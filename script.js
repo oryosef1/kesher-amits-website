@@ -130,16 +130,19 @@ document.addEventListener('DOMContentLoaded', () => {
     let galleryImages = [];
     let currentIndex = 0;
 
-    const collectGalleryImages = () => {
-        galleryImages = Array.from(document.querySelectorAll('.gallery-item img'));
+    const getVisibleImages = () => {
+        return Array.from(document.querySelectorAll('.gallery-item img')).filter(img => {
+            return img.offsetParent !== null;
+        });
     };
 
-    const openLightbox = (index) => {
-        collectGalleryImages();
-        currentIndex = index;
-        lightboxImg.src = galleryImages[index].src;
-        lightboxImg.alt = galleryImages[index].alt;
-        lightboxCounter.textContent = `${index + 1} / ${galleryImages.length}`;
+    const openLightbox = (img) => {
+        galleryImages = getVisibleImages();
+        currentIndex = galleryImages.indexOf(img);
+        if (currentIndex === -1) currentIndex = 0;
+        lightboxImg.src = galleryImages[currentIndex].src;
+        lightboxImg.alt = galleryImages[currentIndex].alt;
+        lightboxCounter.textContent = `${currentIndex + 1} / ${galleryImages.length}`;
         lightbox.classList.add('active');
         document.body.style.overflow = 'hidden';
     };
@@ -150,22 +153,19 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const navigate = (direction) => {
-        collectGalleryImages();
+        galleryImages = getVisibleImages();
         currentIndex = (currentIndex + direction + galleryImages.length) % galleryImages.length;
         lightboxImg.src = galleryImages[currentIndex].src;
         lightboxImg.alt = galleryImages[currentIndex].alt;
         lightboxCounter.textContent = `${currentIndex + 1} / ${galleryImages.length}`;
     };
 
-    // Event delegation for gallery clicks (no cloning needed)
-    document.querySelectorAll('.gallery-grid').forEach(grid => {
-        grid.addEventListener('click', (e) => {
-            const item = e.target.closest('.gallery-item');
-            if (!item) return;
-            collectGalleryImages();
-            const index = galleryImages.indexOf(item.querySelector('img'));
-            if (index !== -1) openLightbox(index);
-        });
+    // Event delegation for gallery clicks
+    document.querySelector('.gallery').addEventListener('click', (e) => {
+        const item = e.target.closest('.gallery-item');
+        if (!item) return;
+        const img = item.querySelector('img');
+        if (img) openLightbox(img);
     });
 
     lightboxClose.addEventListener('click', closeLightbox);
