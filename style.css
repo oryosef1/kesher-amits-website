@@ -448,7 +448,33 @@ h1, h2, h3 {
 
 /* ---------- About ---------- */
 .about {
-    background: var(--white);
+    background: var(--green-dark);
+    color: var(--white);
+}
+
+.about .section-tag {
+    color: var(--gold-light);
+    background: rgba(212, 168, 67, 0.15);
+}
+
+.about-title {
+    color: var(--white) !important;
+}
+
+.about-lead {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.about-text p {
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.stat-label {
+    color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.about-stats {
+    border-top-color: rgba(255, 255, 255, 0.15) !important;
 }
 
 .about-grid {
@@ -472,14 +498,7 @@ h1, h2, h3 {
 }
 
 .about-image-accent {
-    position: absolute;
-    bottom: -20px;
-    right: -20px;
-    width: 120px;
-    height: 120px;
-    border: 4px solid var(--gold);
-    border-radius: var(--radius);
-    z-index: -1;
+    display: none;
 }
 
 .about-title {
@@ -544,11 +563,14 @@ h1, h2, h3 {
 }
 
 .service-card {
+    display: block;
     background: var(--white);
     border-radius: var(--radius);
     overflow: hidden;
     box-shadow: var(--shadow);
     transition: all var(--transition);
+    text-decoration: none;
+    color: inherit;
 }
 
 .service-card:hover {
@@ -625,14 +647,14 @@ h1, h2, h3 {
 }
 
 @keyframes scroll-rtl {
-    0% { transform: translateX(-50%); }
-    100% { transform: translateX(0%); }
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(50%); }
 }
 
 /* ---------- Quote Section ---------- */
 .quote-section {
-    background: var(--cream);
-    padding: 40px 0;
+    background: var(--green-medium);
+    padding: 36px 0;
 }
 
 .big-quote {
@@ -642,18 +664,18 @@ h1, h2, h3 {
 }
 
 .big-quote p {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: var(--green-dark);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--white);
     line-height: 1.5;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
 }
 
 .big-quote cite {
     font-style: normal;
-    color: var(--gold-dark);
-    font-size: 1.1rem;
-    font-weight: 600;
+    color: var(--gold-light);
+    font-size: 1rem;
+    font-weight: 500;
 }
 
 /* ---------- Testimonials ---------- */
@@ -714,21 +736,7 @@ h1, h2, h3 {
 
 /* ---------- Gallery ---------- */
 .gallery {
-    background: var(--green-dark);
-    color: var(--white);
-}
-
-.gallery .section-tag {
-    color: var(--gold-light);
-    background: rgba(212, 168, 67, 0.15);
-}
-
-.gallery .section-title {
-    color: var(--white);
-}
-
-.gallery .section-subtitle {
-    color: rgba(255, 255, 255, 0.6);
+    background: var(--cream);
 }
 
 .gallery-grid {
@@ -850,7 +858,7 @@ h1, h2, h3 {
 
 /* ---------- Contact ---------- */
 .contact {
-    background: var(--white);
+    background: var(--cream);
 }
 
 .contact-grid {
@@ -982,7 +990,7 @@ a.contact-card:hover {
 
 /* ---------- How It Works ---------- */
 .how-it-works {
-    background: var(--cream);
+    background: var(--white);
 }
 
 .steps-grid {
