@@ -141,14 +141,14 @@ h1, h2, h3 {
     right: 0;
     left: 0;
     z-index: 1000;
-    background: transparent;
+    background: rgba(26, 58, 42, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     transition: all var(--transition);
 }
 
 .navbar.scrolled {
-    background: rgba(26, 58, 42, 0.95);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background: rgba(26, 58, 42, 0.97);
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
 }
 
@@ -427,9 +427,9 @@ h1, h2, h3 {
 }
 
 .btn-outline {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.15);
     color: var(--white);
-    border-color: rgba(255, 255, 255, 0.35);
+    border-color: rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(4px);
 }
 
@@ -631,7 +631,7 @@ h1, h2, h3 {
 /* ---------- Quote Section ---------- */
 .quote-section {
     background: var(--white);
-    padding: 80px 0;
+    padding: 50px 0;
 }
 
 .big-quote {
