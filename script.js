@@ -6,6 +6,10 @@
 if ('scrollRestoration' in history) {
     history.scrollRestoration = 'manual';
 }
+// Clear hash so browser doesn't auto-scroll to an anchor
+if (window.location.hash) {
+    history.replaceState(null, '', window.location.pathname);
+}
 window.scrollTo(0, 0);
 
 // ---------- Page Loader ----------
