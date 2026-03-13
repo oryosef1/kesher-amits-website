@@ -8,17 +8,13 @@ if ('scrollRestoration' in history) {
 }
 window.scrollTo(0, 0);
 
-document.addEventListener('DOMContentLoaded', () => {
-    // ---------- Page Loader ----------
+// ---------- Page Loader ----------
+window.addEventListener('load', () => {
     const loader = document.getElementById('pageLoader');
-    if (loader) {
-        window.addEventListener('load', () => {
-            setTimeout(() => loader.classList.add('hidden'), 400);
-        });
-        // Fallback: hide after 3s max
-        setTimeout(() => loader.classList.add('hidden'), 3000);
-    }
+    if (loader) setTimeout(() => loader.classList.add('hidden'), 300);
+});
 
+document.addEventListener('DOMContentLoaded', () => {
     // ---------- Navbar Scroll Effect ----------
     const navbar = document.getElementById('navbar');
     const backToTop = document.getElementById('backToTop');
