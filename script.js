@@ -9,6 +9,16 @@ if ('scrollRestoration' in history) {
 window.scrollTo(0, 0);
 
 document.addEventListener('DOMContentLoaded', () => {
+    // ---------- Page Loader ----------
+    const loader = document.getElementById('pageLoader');
+    if (loader) {
+        window.addEventListener('load', () => {
+            setTimeout(() => loader.classList.add('hidden'), 400);
+        });
+        // Fallback: hide after 3s max
+        setTimeout(() => loader.classList.add('hidden'), 3000);
+    }
+
     // ---------- Navbar Scroll Effect ----------
     const navbar = document.getElementById('navbar');
     const backToTop = document.getElementById('backToTop');
@@ -110,7 +120,6 @@ document.addEventListener('DOMContentLoaded', () => {
         loadMoreBtn.addEventListener('click', () => {
             galleryExtra.classList.add('visible');
             loadMoreBtn.style.display = 'none';
-            attachLightboxHandlers();
         });
     }
 
@@ -152,19 +161,16 @@ document.addEventListener('DOMContentLoaded', () => {
         lightboxCounter.textContent = `${currentIndex + 1} / ${galleryImages.length}`;
     };
 
-    const attachLightboxHandlers = () => {
-        collectGalleryImages();
-        document.querySelectorAll('.gallery-item').forEach((item, index) => {
-            const newItem = item.cloneNode(true);
-            item.parentNode.replaceChild(newItem, item);
+    // Event delegation for gallery clicks (no cloning needed)
+    document.querySelectorAll('.gallery-grid').forEach(grid => {
+        grid.addEventListener('click', (e) => {
+            const item = e.target.closest('.gallery-item');
+            if (!item) return;
+            collectGalleryImages();
+            const index = galleryImages.indexOf(item.querySelector('img'));
+            if (index !== -1) openLightbox(index);
         });
-        collectGalleryImages();
-        document.querySelectorAll('.gallery-item').forEach((item, index) => {
-            item.addEventListener('click', () => openLightbox(index));
-        });
-    };
-
-    attachLightboxHandlers();
+    });
 
     lightboxClose.addEventListener('click', closeLightbox);
     lightboxPrev.addEventListener('click', () => navigate(1));

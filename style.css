@@ -2,6 +2,34 @@
    קשר אמיץ - Kesher Amits Website v2
    ============================================ */
 
+/* ---------- Page Loader ---------- */
+.page-loader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: var(--green-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.page-loader.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.loader-logo {
+    width: 120px;
+    animation: loaderPulse 1.2s ease-in-out infinite;
+}
+
+@keyframes loaderPulse {
+    0%, 100% { opacity: 0.4; transform: scale(0.95); }
+    50% { opacity: 1; transform: scale(1.05); }
+}
+
 /* ---------- Reset & Base ---------- */
 *, *::before, *::after {
     margin: 0;
@@ -171,6 +199,22 @@ h1, h2, h3 {
     color: var(--gold-light);
 }
 
+.nav-cta {
+    background: var(--gold) !important;
+    color: var(--green-dark) !important;
+    padding: 8px 22px !important;
+    border-radius: 10px !important;
+    font-weight: 700 !important;
+    font-size: 0.9rem !important;
+    transition: all var(--transition) !important;
+}
+
+.nav-cta:hover {
+    background: var(--gold-light) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(212, 168, 67, 0.4);
+}
+
 .nav-toggle {
     display: none;
     flex-direction: column;
@@ -271,7 +315,10 @@ h1, h2, h3 {
 
 .hero-title-line:nth-child(2) {
     animation-delay: 0.15s;
-    color: var(--gold-light);
+    background: linear-gradient(135deg, var(--gold-light) 0%, #f0d78c 50%, var(--gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .hero-subtitle {
@@ -360,9 +407,16 @@ h1, h2, h3 {
 }
 
 .btn-primary {
-    background: var(--gold);
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%);
+    background-size: 200% 200%;
     color: var(--green-dark);
     border-color: var(--gold);
+    animation: shimmer 3s ease infinite;
+}
+
+@keyframes shimmer {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
 }
 
 .btn-primary:hover {
@@ -498,7 +552,7 @@ h1, h2, h3 {
 
 .service-card:hover {
     transform: translateY(-8px);
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12), 0 0 0 2px rgba(212, 168, 67, 0.25);
 }
 
 .service-img-wrap {
@@ -609,6 +663,7 @@ h1, h2, h3 {
 
 .testimonials .section-tag {
     color: var(--gold-light);
+    background: rgba(212, 168, 67, 0.15);
     border-color: rgba(212, 168, 67, 0.3);
 }
 
@@ -632,11 +687,14 @@ h1, h2, h3 {
     border-radius: var(--radius);
     overflow: hidden;
     transition: var(--transition);
+    border: 1px solid rgba(212, 168, 67, 0.15);
 }
 
 .testimonial-video:hover {
-    transform: translateY(-4px);
+    transform: translateY(-6px);
     background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(212, 168, 67, 0.4);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
 }
 
 .testimonial-video iframe {
@@ -689,8 +747,28 @@ h1, h2, h3 {
     pointer-events: none;
 }
 
+.gallery-item::before {
+    content: '⌕';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.5);
+    z-index: 2;
+    font-size: 2.4rem;
+    color: white;
+    opacity: 0;
+    transition: all var(--transition);
+    pointer-events: none;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+
+.gallery-item:hover::before {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
 .gallery-item:hover::after {
-    background: rgba(26, 58, 42, 0.15);
+    background: rgba(26, 58, 42, 0.3);
 }
 
 .gallery-item img {
@@ -785,6 +863,11 @@ h1, h2, h3 {
     padding: 20px 24px;
     transition: all var(--transition);
     cursor: pointer;
+    border-right: 3px solid transparent;
+}
+
+.contact-card:hover {
+    border-right-color: var(--gold);
 }
 
 a.contact-card:hover {
@@ -908,7 +991,7 @@ a.contact-card:hover {
     width: 64px;
     height: 64px;
     border-radius: 50%;
-    background: var(--gold);
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
     color: var(--green-dark);
     font-size: 1.6rem;
     font-weight: 900;
@@ -916,6 +999,13 @@ a.contact-card:hover {
     align-items: center;
     justify-content: center;
     margin: 0 auto 20px;
+    box-shadow: 0 4px 16px rgba(212, 168, 67, 0.3);
+    transition: all var(--transition);
+}
+
+.step:hover .step-number {
+    transform: scale(1.1);
+    box-shadow: 0 6px 24px rgba(212, 168, 67, 0.5);
 }
 
 .step h3 {
@@ -1245,6 +1335,12 @@ a.contact-card:hover {
         padding: 16px;
         font-size: 1.2rem;
         border-radius: 12px;
+    }
+
+    .nav-cta {
+        display: block !important;
+        text-align: center;
+        margin-top: 12px;
     }
 
     /* About */
