@@ -6,7 +6,6 @@
 if ('scrollRestoration' in history) {
     history.scrollRestoration = 'manual';
 }
-// Clear hash so browser doesn't auto-scroll to an anchor
 if (window.location.hash) {
     history.replaceState(null, '', window.location.pathname);
 }
@@ -14,6 +13,8 @@ window.scrollTo(0, 0);
 
 // ---------- Page Loader ----------
 window.addEventListener('load', () => {
+    // Scroll to top again after everything loads (catches mobile hash scroll)
+    window.scrollTo(0, 0);
     const loader = document.getElementById('pageLoader');
     if (loader) setTimeout(() => loader.classList.add('hidden'), 300);
 });

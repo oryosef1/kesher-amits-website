@@ -878,12 +878,13 @@ h1, h2, h3 {
     display: flex;
     align-items: center;
     gap: 20px;
-    background: var(--cream);
+    background: var(--white);
     border-radius: var(--radius-sm);
     padding: 20px 24px;
     transition: all var(--transition);
     cursor: pointer;
     border-right: 3px solid transparent;
+    box-shadow: var(--shadow-sm);
 }
 
 .contact-card:hover {
@@ -1405,8 +1406,8 @@ a.contact-card:hover {
         flex-direction: column;
         align-items: center;
     }
-    .step-arrow { transform: rotate(90deg); padding: 0; }
-    .step-arrow svg { transform: scaleX(-1); }
+    .step-arrow { transform: rotate(90deg) scaleY(-1); padding: 0; }
+    .step-arrow svg { transform: none; }
 
     /* Testimonials */
     .testimonials-grid {
